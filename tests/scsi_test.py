@@ -1,6 +1,7 @@
 import utils.common as common
 import time
 
+#Test if SCSI controller is initiated
 def test_scsi_initialization(file_prefix, scsi_controller, expected_result):
     start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     test_case_name = "scsi_initialization"
@@ -11,6 +12,7 @@ def test_scsi_initialization(file_prefix, scsi_controller, expected_result):
     end_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     common.log_test_result(file_prefix, start_time, end_time, test_case_name, status)
 
+#Test if SCSI controller lists the available devices properly
 def test_scsi_enumeration(file_prefix, scsi_controller, expected_result):
     start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     test_case_name = "scsi_enumeration"
@@ -24,6 +26,7 @@ def test_scsi_enumeration(file_prefix, scsi_controller, expected_result):
     common.log_test_result(file_prefix, start_time, end_time, test_case_name, status)
     #print(scsi_controller.list_scsi_controller())
 
+#Test case for SCSI performance capture
 def test_scsi_performance(file_prefix, scsi_controller, expected_result):
     start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     test_case_name = "scsi_performance"

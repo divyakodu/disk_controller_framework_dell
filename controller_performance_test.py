@@ -1,3 +1,5 @@
+#Performance Test case
+
 import threading
 import time
 import config.controller_config as controller_config
@@ -12,6 +14,7 @@ import pandas as pd
 
 stop_event = threading.Event()
 
+#Create controller based on OS type
 def create_controller(platform):
     if platform == "windows":
         ahci_controller = ahci.AHCIController(windows_utils.WindowsController())
@@ -25,6 +28,7 @@ def create_controller(platform):
     return ahci_controller, scsi_controller
 
 
+#Read from Storage function for read performance testing
 def read_from_storage():
     config = controller_config.ControllerConfig().get_controller_config()
     load_dir = config.get("load_dir")
@@ -96,7 +100,7 @@ def performance_test(duration_minutes):
     #    f.write(html_report)
 
 
-# Entry point
+# Entry point for performance testing
 if __name__ == "__main__":
     duration_minutes = 1 # Change this to the desired duration
     performance_test(duration_minutes)

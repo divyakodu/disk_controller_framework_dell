@@ -1,3 +1,5 @@
+#Common utilities for Framework
+
 import os
 import platform
 import csv
@@ -12,10 +14,12 @@ import tkinter as tk
 
 logging.basicConfig(level=logging.INFO, format='\033[1;34m%(asctime)s - %(levelname)s -%(message)s\033[0m')
 
+#Detect platform on which code runs
 def detect_platform():
     return platform.system().lower()
 
 
+#Capture log results in file and stdout
 def log_test_result(file_prefix, start_time, end_time, test_case_name, status):
     platform = detect_platform()
     config = controller_config.ControllerConfig().get_controller_config()
@@ -49,7 +53,7 @@ def log_test_result(file_prefix, start_time, end_time, test_case_name, status):
         #pass
         json.dump(existing_entries, json_file, indent=4)
 
-
+#Parse the stdout and produces dictionary for further processing
 def parse_csv_to_dicts(csv_output):
     dicts = []
     row = 0
@@ -67,6 +71,7 @@ def parse_csv_to_dicts(csv_output):
                 dicts.append(temp_dict)
     return dicts
 
+#Basic visualisation in form of plot and html file for sharing
 def visualize():
     platform = detect_platform()
     root = tk.Tk()

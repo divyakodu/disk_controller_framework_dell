@@ -1,6 +1,7 @@
 import utils.common as common
 import time
 
+#Test if AHCI controller is initiated
 def test_ahci_initialization(file_prefix, ahci_controller, expected_result):
     start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     test_case_name = "ahci_initialization"
@@ -11,6 +12,7 @@ def test_ahci_initialization(file_prefix, ahci_controller, expected_result):
     end_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     common.log_test_result(file_prefix, start_time, end_time, test_case_name, status)
 
+#Test if AHCI controller lists the available devices properly
 def test_ahci_enumeration(file_prefix, ahci_controller, expected_result):
     start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     test_case_name = "ahci_enumeration"
@@ -22,6 +24,7 @@ def test_ahci_enumeration(file_prefix, ahci_controller, expected_result):
     end_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     common.log_test_result(file_prefix, start_time, end_time, test_case_name, status)
 
+#Test case for AHCI performance capture
 def test_ahci_performance(file_prefix, ahci_controller, expected_result):
     start_time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     test_case_name = "ahci_performance"

@@ -1,3 +1,5 @@
+#Feature file for running AHCI and SCSI test cases
+
 import os
 from utils.common import detect_platform, visualize
 import controllers.ahci_controller as ahci
@@ -10,18 +12,23 @@ import time
 import config.controller_config as controller_config
 import json
 
+#Create AHCI and SCSI controller based on whether OS is Windows or MAC
 def create_controller(platform):
+#Windows OS
     if platform == "windows":
         ahci_controller = ahci.AHCIController(windows_utils.WindowsController())
         scsi_controller = scsi.SCSIController(windows_utils.WindowsController())
+#Mac OS
     elif platform == "darwin":
         ahci_controller = ahci.AHCIController(mac_utils.MacController())
         scsi_controller = scsi.SCSIController(mac_utils.MacController())
+#Unsupported OS
     else:
         raise NotImplementedError("Platform not supported")
 
     return ahci_controller, scsi_controller
 
+#Run the test cases for AHCI and SCSI
 def run_tests():
     config = controller_config.ControllerConfig().get_controller_config()
     data_dir = config.get("data_dir")
@@ -45,4 +52,5 @@ def run_tests():
 
 if __name__ == '__main__':
     run_tests()
+#Visualise will open a prompt to accept log file for visualisation. It will display a plot as well as produce a html file for export
     visualize()
